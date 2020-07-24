@@ -36,7 +36,7 @@ Route::get('/test2', function () {
         $number--;
 
         $temp->num = $number;
-        $number->save();
+        $temp->save();
     } catch (\Exception $e) {
         DB::rollback();
         throw new HttpException(500, $e->getMessage(), $e, [], 0);
