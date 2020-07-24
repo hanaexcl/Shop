@@ -16,5 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return 'test';
+    $temp = \App\test::find(1);
+
+    return $temp->num;
 });
