@@ -23,3 +23,26 @@ Route::get('/test', function () {
 
     return $temp->num;
 });
+
+Route::get('/test2', function () {
+
+    DB::beginTransaction();
+
+    try {
+
+        $temp = \App\test::lockForUpdate()->find(1);
+
+        $number =  $temp->num;
+        $number--;
+
+        $temp->num = $number;
+        $number->save();
+    } catch (\Exception $e) {
+        DB::rollback();
+        throw new HttpException(500, $e->getMessage(), $e, [], 0);
+    }
+
+    DB::commit();
+
+    return $number;
+});
