@@ -25,8 +25,8 @@ Route::get('/test', function () {
 });
 
 Route::get('/test3', function () {
-
-    return '1';
+    $temp = \App\test::find(1);
+    return $temp->num;
 });
 
 Route::get('/test2', function () {
