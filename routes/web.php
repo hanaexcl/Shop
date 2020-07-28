@@ -24,6 +24,11 @@ Route::get('/test', function () {
     return $temp->num;
 });
 
+Route::get('/test3', function () {
+
+    return '1';
+});
+
 Route::get('/test2', function () {
 
     DB::beginTransaction();
