@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
+Route::get('/test2', function () {
     $temp = \App\test::find(1);
 
     $number =  $temp->num;
@@ -27,12 +27,12 @@ Route::get('/test', function () {
     return $number;
 });
 
-Route::get('/test3', function () {
+Route::get('/test1', function () {
     $temp = \App\test::find(1);
     return $temp->num;
 });
 
-Route::get('/test2', function () {
+Route::get('/test3', function () {
 
     DB::beginTransaction();
 
@@ -53,4 +53,23 @@ Route::get('/test2', function () {
     DB::commit();
 
     return $number;
+});
+
+Route::get('/test4', function () {
+
+
+    DB::transaction(function()
+    {
+        $temp = \App\test::find(1);
+
+        $number =  $temp->num;
+        $number--;
+
+        $temp->num = $number;
+        $temp->save();
+
+        return $number;
+    });
+
+    return 'error';
 });
