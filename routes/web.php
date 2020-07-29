@@ -76,5 +76,5 @@ Route::get('/test4', function () {
         DB::table('tests')->update(array('num' => 'num' - 1));
     });
 
-    //return 'error';
+    return '1';
 });
