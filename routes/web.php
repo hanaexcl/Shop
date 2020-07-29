@@ -71,10 +71,21 @@ Route::get('/test4', function () {
 //        return $number;
 //    });
 
-    DB::transaction(function()
+    return DB::transaction(function()
     {
-        DB::table('tests')->update(array('num' => 'num' - 1));
+        $tmp = DB::table('tests')->where('id', '=', 1)->first();
+
+        $num = $tmp->num;
+
+        $num = $num - 1;
+
+        DB::table('tests')
+            ->where('id', 1)
+            ->update(['num'=>$num]);
+
+        return $num;
+        //DB::table('tests')->update(array('num' => 'num' - 1));
     });
 
-    return '1';
+    //return '1';
 });
