@@ -58,7 +58,7 @@ Route::get('/test3', function () {
 Route::get('/test4', function () {
 
 
-    DB::transaction(function()
+    return DB::transaction(function()
     {
         $temp = \App\test::find(1);
 
@@ -71,5 +71,5 @@ Route::get('/test4', function () {
         return $number;
     });
 
-    return 'error';
+    //return 'error';
 });
