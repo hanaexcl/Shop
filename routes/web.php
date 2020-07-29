@@ -58,17 +58,22 @@ Route::get('/test3', function () {
 Route::get('/test4', function () {
 
 
-    return DB::transaction(function()
+//    return DB::transaction(function()
+//    {
+//        $temp = \App\test::find(1);
+//
+//        $number =  $temp->num;
+//        $number--;
+//
+//        $temp->num = $number;
+//        $temp->save();
+//
+//        return $number;
+//    });
+
+    DB::transaction(function()
     {
-        $temp = \App\test::find(1);
-
-        $number =  $temp->num;
-        $number--;
-
-        $temp->num = $number;
-        $temp->save();
-
-        return $number;
+        DB::table('tests')->update(array('num' => 'num' - 1));
     });
 
     //return 'error';
